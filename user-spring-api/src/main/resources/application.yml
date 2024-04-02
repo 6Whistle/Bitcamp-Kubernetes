@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: api
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3307/userdb
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+        format_sql: true
+    show-sql: true
+logging:
+  level:
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql: trace
+
+
+#개발 시 create 혹은 update 운영시에는 validate
+#실행 시 warnning을 제거 : non_contextual_creation 사용
+#콘솔에 실행된 sql 띄워줌 : show-sql
+#sql 읽기 쉽게 보여줌 : formet_sql
+#sql 값을 보게 해줌 : descriptor
