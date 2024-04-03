@@ -1,7 +1,7 @@
 version: "3.2"
 services:
   database:
-    container_name: user-container
+    container_name: userdb-container
     image: mysql:8.0.22
     volumes:
       - ~/docker/mysql/demo/etc/mysql/conf.d:/etc/mysql/conf.d:ro
@@ -16,13 +16,13 @@ services:
     ports:
       - "3306:3306"
     networks:
-      - test_env
+      - net_env
 
   application:
     container_name: user-application-container
     build: .
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://user-container:3306/userdb
+      SPRING_DATASOURCE_URL: jdbc:mysql://userdb-container:3306/userdb
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
     ports:
@@ -30,8 +30,8 @@ services:
     depends_on:
       - database
     networks:
-      - test_env
+      - net_env
 
 networks:
-  test_env:
+  net_env:
     driver: bridge
