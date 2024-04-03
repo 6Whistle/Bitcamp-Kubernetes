@@ -33,6 +33,6 @@ dependencies {
 	implementation 'org.jsoup:jsoup:1.17.2'
 }
 
-tasks.named('test') {
-	useJUnitPlatform()
-}
+// tasks.named('test') {
+// 	useJUnitPlatform()
+// }

@@ -1,16 +1,37 @@
-version: '3.2'
+version: "3.2"
 services:
   database:
     container_name: user-container
-    image: mysql
-    volumes:      
-      - ~/docker/mysql/etc/mysql/conf.d:/etc/mysql/conf.d:ro
-      - ~/docker/mysql/var/lib/mysql:/var/lib/mysql
-      - ~/docker/mysql/var/log/mysql:/var/log/mysql
+    image: mysql:8.0.22
+    volumes:
+      - ~/docker/mysql/demo/etc/mysql/conf.d:/etc/mysql/conf.d:ro
+      - ~/docker/mysql/demo/var/lib/mysql:/var/lib/mysql
+      - ~/docker/mysql/demo/var/log/mysql:/var/log/mysql
     environment:
       - MYSQL_DATABASE=userdb
+      - MYSQL_USER=root
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_ROOT_HOST=%
     command: ['--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
     ports:
-      - 3307:3306
+      - "3306:3306"
+    networks:
+      - test_env
+
+  application:
+    container_name: user-application-container
+    build: .
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://user-container:3306/userdb
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+    ports:
+      - "8080:8080"
+    depends_on:
+      - database
+    networks:
+      - test_env
+
+networks:
+  test_env:
+    driver: bridge
