@@ -1,6 +1,8 @@
 package com.erichgamma.api.board;
 
 import com.erichgamma.api.article.Article;
+import com.erichgamma.api.common.BaseEntity;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,11 +14,11 @@ import java.util.List;
 @Getter
 @ToString(exclude = "id")
 @Entity(name = "boards")
-public class Board {
+public class Board extends BaseEntity {
 
     @Id
     @Column(name = "id",nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String boardName;

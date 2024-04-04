@@ -1,6 +1,4 @@
-package com.erichgamma.api.article;
-
-import java.time.LocalDateTime;
+package com.erichgamma.api.board;
 
 import org.springframework.stereotype.Component;
 
@@ -8,18 +6,15 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.extern.log4j.Log4j2;
 
 @Component
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-@Log4j2
-public class ArticleDto {
+public class BoardDto {
     private Long id;
     private String title;
-    private String content;
-    private LocalDateTime registerDate;
-    private String writer;
+    private String contnet;
+    private String registerDate;
 }

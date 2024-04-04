@@ -7,52 +7,53 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.erichgamma.api.common.AbstractService;
-import com.erichgamma.api.enums.Messenger;
+import com.erichgamma.api.common.component.MessengerVo;
 
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class ArticleServiceImpl extends AbstractService{
+public class ArticleServiceImpl implements ArticleService{
     private final ArticleRepository articleRepository;
 
     @Override
-    public Messenger save(Object t) {
+    public String save(Article t) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'save'");
     }
 
     @Override
-    public Messenger delete(Object t) {
+    public String insertMany() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'insertMany'");
+    }
+
+    @Override
+    public String delete(Article t) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'delete'");
     }
 
     @Override
-    public Messenger deleteAll() {
+    public List<Article> findAll() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteAll'");
+        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
     }
 
     @Override
-    public List<?> findAll(){
-        return articleRepository.findAll();
-    }
-
-    @Override
-    public Optional findById(Long id) {
+    public Optional<Article> findById(Long id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'findById'");
     }
 
     @Override
-    public Long count() {
+    public String count() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'count'");
     }
 
     @Override
-    public Optional getOne(String id) throws SQLException {
+    public Optional<Article> getOne(String id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getOne'");
     }
@@ -62,5 +63,6 @@ public class ArticleServiceImpl extends AbstractService{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'existsById'");
     }
+
     
 }

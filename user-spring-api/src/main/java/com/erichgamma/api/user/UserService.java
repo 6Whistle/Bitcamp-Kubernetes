@@ -1,22 +1,23 @@
 package com.erichgamma.api.user;
 
-import org.springframework.stereotype.Service;
+import java.util.List;
 
-import com.erichgamma.api.enums.Messenger;
+import com.erichgamma.api.common.command.CommandService;
+import com.erichgamma.api.common.query.QueryService;
 
-import lombok.RequiredArgsConstructor;
-
-@Service
-@RequiredArgsConstructor
-public class UserService {
-    // private final UserRepository userRepository;
-    // Messenger makeTable();
-
-    // Messenger removeTable();
-
-    // Messenger userExistsByUsername(String username);
-
-    // Messenger login(User user);
-
-    // Messenger join(User user);
+public interface UserService extends CommandService<UserDto>, QueryService<UserDto>{
+    default UserDto entityToDto(User entity){
+        return UserDto.builder()
+        .id(entity.getId())
+        .username(entity.getUsername())
+        .password(entity.getPassword())
+        .name(entity.getName())
+        .phone(entity.getPhone())
+        .job(entity.getJob())
+        .build();
+    }
+    
+    String updatePassword(UserDto user);
+    List<UserDto> findUsersByName(String name);
+    List<UserDto> findUsersByJob(String job);
 }

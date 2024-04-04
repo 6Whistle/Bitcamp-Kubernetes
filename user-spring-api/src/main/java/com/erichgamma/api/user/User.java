@@ -3,7 +3,7 @@ package com.erichgamma.api.user;
 import java.util.List;
 
 import com.erichgamma.api.article.Article;
-// import com.erichgamma.api.order.Order;
+import com.erichgamma.api.common.BaseEntity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -14,7 +14,7 @@ import lombok.*;
 @Getter
 @Entity(name = "users")
 @ToString(exclude = "id")
-public class User {
+public class User extends BaseEntity {
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,12 +28,11 @@ public class User {
 
     private Long addressId;
     private String username;
+
+    @Setter
     private String password;
     private String name;
     private String phone;
     private String job;
-    private Double height;
-    private Double weight;
-
 }
 
