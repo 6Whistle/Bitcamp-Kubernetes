@@ -2,8 +2,8 @@ package com.erichgamma.api.user.model;
 
 import java.util.List;
 
-import com.erichgamma.api.article.Article;
-import com.erichgamma.api.common.BaseEntity;
+import com.erichgamma.api.article.model.Article;
+import com.erichgamma.api.common.model.BaseEntity;
 
 import jakarta.persistence.*;
 import lombok.*;

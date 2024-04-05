@@ -7,7 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
-import com.erichgamma.api.article.ArticleDto;
+import com.erichgamma.api.article.model.ArticleDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
