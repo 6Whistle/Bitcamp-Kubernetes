@@ -2,7 +2,7 @@ package com.erichgamma.api.article;
 
 import com.erichgamma.api.board.Board;
 import com.erichgamma.api.common.BaseEntity;
-import com.erichgamma.api.user.User;
+import com.erichgamma.api.user.model.User;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -19,11 +19,11 @@ public class Article extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "writer_id", nullable = true)
     private User writer;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "board_id", nullable = true)
     private Board board;
 

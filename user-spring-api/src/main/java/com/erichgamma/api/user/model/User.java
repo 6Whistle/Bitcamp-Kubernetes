@@ -1,4 +1,4 @@
-package com.erichgamma.api.user;
+package com.erichgamma.api.user.model;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ public class User extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy = "writer")
+    @OneToMany(mappedBy = "writer", fetch = FetchType.LAZY)
     private List<Article> articlesId;
 
     // @OneToMany(mappedBy = "user")

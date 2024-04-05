@@ -5,17 +5,19 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import io.micrometer.common.lang.NonNull;
+import com.erichgamma.api.user.model.User;
+import com.erichgamma.api.user.model.UserDto;
+
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Override
     public String save(UserDto userDto) {
-        Optional<User> findUser = userRepository.findByUsername(userDto.getUsername());
+        Optional<UserDto> findUser = getOne(userDto.getUsername());
         findUser.ifPresentOrElse(i -> {}, () -> userRepository.save(User.builder()
         .username(userDto.getUsername())
         .password(userDto.getPassword())
@@ -35,7 +37,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String delete(UserDto userDto) {
-        Optional<User> findUser = userRepository.findByUsername(userDto.getUsername());
+        Optional<UserDto> findUser = getOne(userDto.getUsername());
         findUser.ifPresent(i -> userRepository.deleteById(i.getId()));
         return findUser.isPresent() ? "SUCCESS" : "FAILURE";
     }
@@ -66,10 +68,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String updatePassword(UserDto user) {
-        Optional<User> findUser = userRepository.findByUsername(user.getUsername());
-        findUser.ifPresent(i -> i.setPassword(user.getPassword()));
-        return findUser.isPresent() ? "success" : "failure";
+    public String login(UserDto userDto){
+        return userRepository
+        .findByUsername(userDto.getUsername())
+        .orElseGet(() -> User.builder().password("").build())
+        .getPassword()
+        .equals(userDto.getPassword()) 
+        ? "SUCCESS"
+        : "FAILURE";
+    }
+
+    @Override
+    public String updatePassword(UserDto userDto) {
+        Optional<UserDto> findUser = getOne(userDto.getUsername());
+        findUser.ifPresent(i -> i.setPassword(userDto.getPassword()));
+        return findUser.isPresent() ? "SUCCESS" : "FAILURE";
     }
 
     @Override

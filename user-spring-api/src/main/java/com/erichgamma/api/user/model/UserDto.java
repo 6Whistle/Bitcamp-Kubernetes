@@ -1,4 +1,4 @@
-package com.erichgamma.api.user;
+package com.erichgamma.api.user.model;
 
 import org.springframework.stereotype.Component;
 

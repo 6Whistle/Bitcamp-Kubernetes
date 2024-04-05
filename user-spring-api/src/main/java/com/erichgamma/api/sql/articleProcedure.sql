@@ -18,7 +18,7 @@ BEGIN
     WHILE i <= 50
         DO
             INSERT INTO articles(id, title, content, writer_id, mod_date, reg_date)
-            VALUES (i, concat('title', i), concat('content', i), (i % 10 + 1), now(), reg_date);
+            VALUES (i, concat('title', i), concat('content', i), (i % 10 + 1), now(), now());
             SET i = i + 1;
 END WHILE;
 END;
