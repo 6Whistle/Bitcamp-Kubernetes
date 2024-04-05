@@ -2,11 +2,11 @@
 import { useEffect, useState } from "react"
 import Box from '@mui/material/Box';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
-import ArticlesColumns from "@/app/component/columns/articles-columns";
 import { NextPage } from "next";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllArticles } from "@/redux/features/articles/article.slice";
 import { fetchAllArticles } from "@/redux/features/articles/article.service";
+import ArticlesColumns from "@/app/component/articles/articles-columns";
 
 
 const ArticlesPage: NextPage = () => {
@@ -31,18 +31,10 @@ const ArticlesPage: NextPage = () => {
       <h2>Articles</h2>
       <Box sx={{ height: 400, width: '100%' }}>
         <DataGrid
-          rows={allArticles ?? [{ id: 0 }]}
+          rows = {allArticles}
           columns={ArticlesColumns()}
-          initialState={{
-            pagination: {
-              paginationModel: {
-                pageSize: 5,
-              },
-            },
-          }}
-          pageSizeOptions={[5]}
+          pageSizeOptions={[5, 10, 20]}
           checkboxSelection
-          disableRowSelectionOnClick
         />
       </Box>
     </>

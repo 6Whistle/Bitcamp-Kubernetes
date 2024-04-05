@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import MuiDemoRows from '@/app/component/rows/mui-demo-rows';
-import MuiDemoColumns from '@/app/component/columns/mui-demo-columns';
+import MuiDemoColumns from '@/app/component/demo/mui-demo-columns';
 import { NextPage } from 'next';
 
 const DataGridDemoPage:NextPage = () => {

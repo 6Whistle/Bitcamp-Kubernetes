@@ -22,7 +22,7 @@ public interface ArticleService extends CommandService<Article>, QueryService<Ar
         .title(entity.getTitle())
         .content(entity.getContent())
         .writer(entity.getWriter().getUsername())
-        .registerDate(entity.getRegLocalDateTime())
+        .registerDate(entity.getModLocalDateTime())
         .build());
     }
 }

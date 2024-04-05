@@ -17,8 +17,8 @@ BEGIN
     DECLARE i INT DEFAULT 1;
     WHILE i <= 50
         DO
-            INSERT INTO articles(id, title, content, writer_id, register_date)
-            VALUES (i, concat('title', i), concat('content', i), (i % 10 + 1), concat('registerDate', i));
+            INSERT INTO articles(id, title, content, writer_id, mod_date, reg_date)
+            VALUES (i, concat('title', i), concat('content', i), (i % 10 + 1), now(), reg_date);
             SET i = i + 1;
 END WHILE;
 END;

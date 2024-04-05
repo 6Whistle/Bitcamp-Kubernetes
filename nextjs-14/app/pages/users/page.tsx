@@ -1,6 +1,6 @@
 'use client'
 
-import UsersColumns from "@/app/component/columns/users-columns"
+import UsersColumns from "@/app/component/users/columns"
 import { fetchAllUsers } from "@/redux/features/users/user.service"
 import { getAllUsers } from "@/redux/features/users/user.slice"
 import { Box } from "@mui/material"
@@ -24,18 +24,10 @@ const UsersPage:NextPage = () => {
           <h2>User</h2>
           <Box sx={{ height: 400, width: '100%' }}>
             <DataGrid
-              rows={allUsers ?? [{id: 0}]}
+              rows = {allUsers}
               columns={UsersColumns()}
-              initialState={{
-                pagination: {
-                  paginationModel: {
-                    pageSize: 5,
-                  },
-                },
-              }}
-              pageSizeOptions={[5]}
+              pageSizeOptions={[5, 10, 20]}
               checkboxSelection
-              disableRowSelectionOnClick
             />
           </Box>
         </>

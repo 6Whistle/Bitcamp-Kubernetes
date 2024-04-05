@@ -22,7 +22,7 @@ public class ArticleController {
     @GetMapping(path = "/api/articles/all-articles")
     public Map<?, ?> findAll(){
         return Map.of(
-            "articles", null
+            "articles", articleRepository.findAll().stream().map(i -> articleService.entityToDto(i)).toList()
         );
     }
 }
