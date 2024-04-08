@@ -6,8 +6,8 @@ BEGIN
     DECLARE i INT DEFAULT 1;
     WHILE i <= 10
         DO
-            INSERT INTO users(id, username, password, name)
-            VALUES (i, concat('username', i), concat('password', i), concat('name', i));
+            INSERT INTO users(id, username, password, name, job)
+            VALUES (i, concat('username', i), concat('password', i), concat('name', i), concat('job', i));
             SET i = i + 1;
 END WHILE;
 END;

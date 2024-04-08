@@ -14,7 +14,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class BoardDto {
     private Long id;
-    private String title;
-    private String contnet;
-    private String registerDate;
+    private String boardType;
 }

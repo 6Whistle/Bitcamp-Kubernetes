@@ -3,44 +3,58 @@ package com.erichgamma.api.board.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.erichgamma.api.board.model.BoardDto;
+import com.erichgamma.api.common.component.MessengerVo;
+
 public class BoardServiceImpl implements BoardService{
 
     @Override
-    public String save(Object t) {
+    public MessengerVo save(BoardDto t) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'save'");
     }
 
     @Override
-    public String insertMany() {
+    public MessengerVo modelify(BoardDto t) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'modelify'");
+    }
+
+    @Override
+    public MessengerVo insertMany() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'insertMany'");
     }
 
     @Override
-    public String delete(Object t) {
+    public MessengerVo deleteById(Long id) {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        throw new UnsupportedOperationException("Unimplemented method 'deleteById'");
     }
 
     @Override
-    public List findAll() {
+    public MessengerVo deleteAll() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'deleteAll'");
+    }
+
+    @Override
+    public List<BoardDto> findAll() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'findAll'");
     }
 
     @Override
-    public Optional findById(Long id) {
+    public Optional<BoardDto> findById(Long id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'findById'");
     }
 
     @Override
-    public String count() {
+    public Long count() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'count'");
     }
-
 
     @Override
     public Boolean existsById(Long id) {
@@ -48,10 +62,4 @@ public class BoardServiceImpl implements BoardService{
         throw new UnsupportedOperationException("Unimplemented method 'existsById'");
     }
 
-    @Override
-    public String deleteAll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteAll'");
-    }
-    
 }

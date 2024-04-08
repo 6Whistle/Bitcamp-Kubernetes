@@ -21,9 +21,8 @@ public class Board extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String boardName;
     private String boardType;
 
     @OneToMany(mappedBy = "board")
-    private List<Article> articlesId;    
+    private List<Article> articles;    
 }

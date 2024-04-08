@@ -1,8 +1,11 @@
 package com.erichgamma.api.common.command;
 
+import com.erichgamma.api.common.component.MessengerVo;
+
 public interface CommandService<T> {
-    T save(T t);
-    String insertMany();
-    String delete(T t);
-    String deleteAll();
+    MessengerVo save(T t);
+    MessengerVo modelify(T t);
+    MessengerVo insertMany();
+    MessengerVo deleteById(Long id);
+    MessengerVo deleteAll();
 }

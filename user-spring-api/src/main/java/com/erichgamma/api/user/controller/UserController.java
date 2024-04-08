@@ -1,15 +1,16 @@
 package com.erichgamma.api.user.controller;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,119 +36,69 @@ public class UserController {
 
     // -------------------------- Command -------------------------- 
 
-    @RequestMapping(path = "", method = RequestMethod.POST)
-    public ResponseEntity<MessengerVo> save(@RequestBody Map<String, String> reqMap){
-        log.info("join request : {}", reqMap);
-        return 
-        ResponseEntity.ok(
-            MessengerVo
-            .builder()
-            .message(
-                userService
-                .save(
-                    UserDto
-                    .builder()
-                    .username(reqMap.getOrDefault("username", ""))
-                    .password(reqMap.getOrDefault("password", ""))
-                    .name(reqMap.getOrDefault("name", ""))
-                    .phone(reqMap.getOrDefault("phone", ""))
-                    .job(reqMap.getOrDefault("job", ""))
-                    .build()
-                ).toString()
-            )
-            .build()
-        );
+    @PostMapping("/save")
+    public ResponseEntity<MessengerVo> save(@RequestBody UserDto userDto){
+        log.info("save request : {}", userDto);
+        return ResponseEntity.ok(userService.save(userDto));
     }
 
-    @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<MessengerVo> delete(@PathVariable Long id){
-        return ResponseEntity.ok(
-            MessengerVo
-            .builder()
-            .message(
-                userService.delete(UserDto.builder().id(id).build())
-            )
-            .build()
-        );
+    @DeleteMapping("/delete")
+    public ResponseEntity<MessengerVo> deleteById(@RequestBody Long id){
+        log.info("deleteById request : {}", id);
+        return ResponseEntity.ok(userService.deleteById(id));
     }
 
-    @RequestMapping(path = "", method = RequestMethod.PATCH)
-    public ResponseEntity<MessengerVo> updatePassword(@RequestBody Map<String, String> reqMap){
-        return ResponseEntity.ok(
-            MessengerVo
-            .builder()
-            .message(userService.updatePassword(
-                UserDto
-                .builder()
-                .id(Long.parseLong(reqMap.getOrDefault("id", "-1")))
-                .password(reqMap.getOrDefault("password", ""))
-                .build())
-            )
-            .build()
-        );
+    @PutMapping("/modify")
+    public ResponseEntity<MessengerVo> modifiy(@RequestBody UserDto userDto){
+        log.info("modifiy request : {}", userDto);
+        return ResponseEntity.ok(userService.modelify(userDto));
     }
 
     // -------------------------- Query -------------------------- 
 
-    @RequestMapping(path = "/name", method = RequestMethod.POST)
-    public ResponseEntity<MessengerVo> hello(@RequestBody Map<String, String> reqMap){
-        log.info("hello request : {}", reqMap);
-        return 
-        ResponseEntity.ok(
-            MessengerVo
-            .builder()
-            .message(
-                reqMap.getOrDefault("name", "fail")
-            )
-            .build()
-        );
+
+    @PostMapping("/login")
+    public ResponseEntity<MessengerVo> login(@RequestBody UserDto userDto){
+        log.info("login request : {}", userDto);
+        return ResponseEntity.ok(userService.login(userDto));
     }
 
-    @RequestMapping(path = "/login", method = RequestMethod.POST)
-    public ResponseEntity<MessengerVo> login(@RequestBody Map<String, String> reqMap){
-        log.info("login request : {}", reqMap);
-        return 
-        ResponseEntity.ok(
-            MessengerVo
-            .builder()
-            .message(
-                userService.login(
-                    UserDto.builder()
-                    .username(reqMap.getOrDefault("username", ""))
-                    .password(reqMap.getOrDefault("password", ""))
-                    .build()
-                )
-            )
-        .build());
-    }
-
-    @RequestMapping(path = "", method = RequestMethod.GET)
+    @GetMapping("/list")
     public ResponseEntity<List<UserDto>> findAll(Pageable pageable){
         log.info("findAll request : {}", pageable);
         return ResponseEntity.ok(userService.findAll());
     }
 
-    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<UserDto> findUserById(@PathVariable Long id){
-        log.info("findUserById request : {}", id);
+    @GetMapping("/detail")
+    public ResponseEntity<UserDto> findById(@RequestParam("id") Long id){
+        log.info("findById request : {}", id);
         return ResponseEntity.ok(userService.findById(id).orElseGet(UserDto::new));
     }
 
-    @RequestMapping(path = "/find/name", method = RequestMethod.GET)
-    public ResponseEntity<List<UserDto>> findUsersByName(@RequestParam("name") String name){
-        log.info("findUsersByName request : {}", name);
+    @GetMapping("/count")
+    public ResponseEntity<MessengerVo> count(){
+        log.info("count request");
         return ResponseEntity.ok(
-            userService.findUsersByName(name)
+            MessengerVo.builder()
+            .message(String.valueOf(userService.count()))
+            .build()
         );
     }
 
-    @RequestMapping(path = "/find/job", method = RequestMethod.GET)
-    public ResponseEntity<List<UserDto>> findUsersByJob(@RequestParam("name") String job){
-        log.info("findUsersByJob request : {}", job);
-        return ResponseEntity.ok(
-            userService.findUsersByJob(job)
-        );
-    }
+    
+    // @PostMapping("/search")
+    // public ResponseEntity<List<UserDto>> findUsersByName(@RequestParam("name") String job){
+    //     log.info("findUsersByJob request : {}", job);
+    //     return ResponseEntity.ok(
+    //         userService.findUsersByJob(job)
+    //     );
+    // }
 
-
+    // @PostMapping("/search")
+    // public ResponseEntity<List<UserDto>> findUsersByJob(@RequestParam("job") String job){
+    //     log.info("findUsersByJob request : {}", job);
+    //     return ResponseEntity.ok(
+    //         userService.findUsersByJob(job)
+    //     );
+    // }
 }

@@ -17,6 +17,10 @@ spring:
             '[non_contextual_creation]': true
         '[format_sql]': true
     show-sql: true
+    defer-datasource-initialization: true
+  sql:
+    init:
+      mode: always
 
 logging:
   level:

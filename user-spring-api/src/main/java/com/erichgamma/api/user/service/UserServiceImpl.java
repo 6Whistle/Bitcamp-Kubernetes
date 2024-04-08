@@ -2,9 +2,11 @@ package com.erichgamma.api.user.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 import org.springframework.stereotype.Service;
 
+import com.erichgamma.api.common.component.MessengerVo;
 import com.erichgamma.api.user.model.User;
 import com.erichgamma.api.user.model.UserDto;
 import com.erichgamma.api.user.repository.UserRepository;
@@ -19,58 +21,70 @@ public class UserServiceImpl implements UserService {
     // -------------------------- Command -------------------------- 
 
     @Override
-    public UserDto save(UserDto userDto) {
-        return
-        findByUsername(userDto.getUsername()).isPresent()
-        ? UserDto.builder().build()
-        : entityToDto(
-            userRepository.save(
-                User
-                .builder()
-                .username(userDto.getUsername())
-                .password(userDto.getPassword())
-                .name(userDto.getUsername())
-                .phone(userDto.getPhone())
-                .job(userDto.getJob())
-                .build()
-            )
-        );
+    public MessengerVo save(UserDto userDto) {
+        return MessengerVo.builder()
+        .message(
+            Stream.of(userDto)
+            .filter(i -> !userRepository.existsByUsername(userDto.getUsername()))
+            .peek(i -> userRepository.save(dtoToEntity(i)))
+            .map(i -> "SUCCESS")
+            .findAny()
+            .orElseGet(() -> "FAILURE")
+        )
+        .build();
     }
 
     @Override
-    public String updatePassword(UserDto userDto) {
-        Optional<User> findUser = userRepository.findById(userDto.getId());
-        findUser.ifPresent(i -> {
-            i.setPassword(userDto.getPassword());
-            userRepository.save(i);
-        });
-        return findUser.isPresent() ? "SUCCESS" : "FAILURE";
+    public MessengerVo modelify(UserDto userDto) {
+        return MessengerVo.builder()
+        .message(
+            findUserByUsername(userDto.getUsername())
+            .stream()
+            .peek(i -> i.setPassword(userDto.getPassword()))
+            .peek(i -> userRepository.save(i))
+            .map(i -> "SUCCESS")
+            .findAny()
+            .orElseGet(() -> "FAILURE")
+        )
+        .build();
     }
 
     @Override
-    public String insertMany() {
+    public MessengerVo insertMany() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'insertMany'");
     }
 
     @Override
-    public String delete(UserDto userDto) {
-        Optional<UserDto> findUser = findById(userDto.getId());
-        findUser.ifPresent(i -> userRepository.deleteById(i.getId()));
-        return findUser.isPresent() ? "SUCCESS" : "FAILURE";
+    public MessengerVo deleteById(Long id) {
+        return MessengerVo.builder()
+        .message(
+            Stream.of(id)
+            .filter(i -> userRepository.existsById(i))
+            .peek(i -> userRepository.deleteById(i))
+            .map(i -> "SUCCESS")
+            .findAny()
+            .orElseGet(() -> "FAILURE")
+        )
+        .build();
     }
 
     @Override
-    public String deleteAll() {
+    public MessengerVo deleteAll() {
         userRepository.deleteAll();
-        return "SUCCESS";
+        return MessengerVo.builder()
+        .message("SUCCESS")
+        .build();
     }
 
     // -------------------------- Query -------------------------- 
 
     @Override
     public List<UserDto> findAll() {
-        return userRepository.findAll().stream().map(i -> entityToDto(i)).toList();
+        return userRepository.findAll()
+        .stream()
+        .map(i -> entityToDto(i))
+        .toList();
     }
 
     @Override
@@ -79,29 +93,31 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String count() {
-        return String.valueOf(userRepository.count());
+    public Long count() {
+        return userRepository.count();
     }
 
     @Override
-    public Optional<UserDto> findByUsername(String username) {
-        return userRepository.findByUsername(username).map(i -> entityToDto(i));
+    public Optional<User> findUserByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
 
     @Override
     public Boolean existsById(Long id) {
-        return userRepository.findById(id).isPresent();
+        return userRepository.existsById(id);
     }
 
     @Override
-    public String login(UserDto userDto){
-        return userRepository
-        .findByUsername(userDto.getUsername())
-        .orElseGet(() -> User.builder().password("").build())
-        .getPassword()
-        .equals(userDto.getPassword()) 
-        ? "SUCCESS"
-        : "FAILURE";
+    public MessengerVo login(UserDto userDto){
+        return MessengerVo.builder()
+        .message(
+            findUserByUsername(userDto.getUsername()).stream()
+            .filter(i -> i.getPassword().equals(userDto.getPassword()))
+            .map(i -> "SUCCESS")
+            .findAny()
+            .orElseGet(() -> "FAILURE")
+        )
+        .build();
     }
 
     @Override

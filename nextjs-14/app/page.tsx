@@ -4,13 +4,13 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 import { useState } from "react"
 import { API } from "../redux/common/enums/API"
-import AxiosConfig from "../redux/common/configs/axios-config"
+import AxiosConfig, { instance } from "../redux/common/configs/axios-config"
 import { PG } from "../redux/common/enums/PG"
 import { NextPage } from "next"
 
 const HomePage:NextPage = () => {
   const [name, setName] = useState('')
-  const url = `${API.SERVER}${API.USER}/name`;
+  const url = `${API.USER}/name`;
   const data = {name};
 
   const changeHandler = (e: any) => {
@@ -19,7 +19,7 @@ const HomePage:NextPage = () => {
 
   const clickHandler = () => {
     alert("request name : " + name)
-    axios.post(url, data, AxiosConfig())
+    instance.post(url, data, AxiosConfig())
     .then(res=>{
       alert("response name : " + res.data.name)
     })
