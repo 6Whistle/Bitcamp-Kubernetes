@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.erichgamma.api.common.component.MessengerVo;
@@ -34,7 +35,7 @@ public class UserController {
 
     // -------------------------- Command -------------------------- 
 
-    @RequestMapping(path = "")
+    @RequestMapping(path = "", method = RequestMethod.POST)
     public ResponseEntity<MessengerVo> save(@RequestBody Map<String, String> reqMap){
         log.info("join request : {}", reqMap);
         return 
@@ -64,10 +65,23 @@ public class UserController {
             MessengerVo
             .builder()
             .message(
-                userService
-                .delete(
-                    UserDto.builder().id(id).build()
-                )
+                userService.delete(UserDto.builder().id(id).build())
+            )
+            .build()
+        );
+    }
+
+    @RequestMapping(path = "", method = RequestMethod.PATCH)
+    public ResponseEntity<MessengerVo> updatePassword(@RequestBody Map<String, String> reqMap){
+        return ResponseEntity.ok(
+            MessengerVo
+            .builder()
+            .message(userService.updatePassword(
+                UserDto
+                .builder()
+                .id(Long.parseLong(reqMap.getOrDefault("id", "-1")))
+                .password(reqMap.getOrDefault("password", ""))
+                .build())
             )
             .build()
         );
@@ -75,7 +89,7 @@ public class UserController {
 
     // -------------------------- Query -------------------------- 
 
-    @RequestMapping(path = "/name")
+    @RequestMapping(path = "/name", method = RequestMethod.POST)
     public ResponseEntity<MessengerVo> hello(@RequestBody Map<String, String> reqMap){
         log.info("hello request : {}", reqMap);
         return 
@@ -89,7 +103,7 @@ public class UserController {
         );
     }
 
-    @RequestMapping(path = "/login")
+    @RequestMapping(path = "/login", method = RequestMethod.POST)
     public ResponseEntity<MessengerVo> login(@RequestBody Map<String, String> reqMap){
         log.info("login request : {}", reqMap);
         return 
@@ -118,5 +132,22 @@ public class UserController {
         log.info("findUserById request : {}", id);
         return ResponseEntity.ok(userService.findById(id).orElseGet(UserDto::new));
     }
+
+    @RequestMapping(path = "/find/name", method = RequestMethod.GET)
+    public ResponseEntity<List<UserDto>> findUsersByName(@RequestParam("name") String name){
+        log.info("findUsersByName request : {}", name);
+        return ResponseEntity.ok(
+            userService.findUsersByName(name)
+        );
+    }
+
+    @RequestMapping(path = "/find/job", method = RequestMethod.GET)
+    public ResponseEntity<List<UserDto>> findUsersByJob(@RequestParam("name") String job){
+        log.info("findUsersByJob request : {}", job);
+        return ResponseEntity.ok(
+            userService.findUsersByJob(job)
+        );
+    }
+
 
 }

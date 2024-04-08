@@ -39,8 +39,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String updatePassword(UserDto userDto) {
-        Optional<UserDto> findUser = findByUsername(userDto.getUsername());
-        findUser.ifPresent(i -> i.setPassword(userDto.getPassword()));
+        Optional<User> findUser = userRepository.findById(userDto.getId());
+        findUser.ifPresent(i -> {
+            i.setPassword(userDto.getPassword());
+            userRepository.save(i);
+        });
         return findUser.isPresent() ? "SUCCESS" : "FAILURE";
     }
 

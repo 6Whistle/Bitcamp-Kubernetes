@@ -2,7 +2,7 @@
 
 import { API } from "@/redux/common/enums/API"
 import { PG } from "@/redux/common/enums/PG"
-import AxiosConfig from "@/redux/common/configs/axios-config"
+import AxiosConfig, { instance } from "@/redux/common/configs/axios-config"
 import axios from "axios"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
@@ -15,8 +15,6 @@ const JoinPage:NextPage = () => {
     const [name, setName] = useState('')
     const [phone, setPhone] = useState('')
     const [job, setJob] = useState('')
-    const [height, setHeight] = useState("")
-    const [weight, setWeight] = useState("")
     const [checked, setChecked] = useState(false)
     const router = useRouter();
 
@@ -38,12 +36,6 @@ const JoinPage:NextPage = () => {
     const changeJobHandler = (e: any) => {
         setJob(e.target.value)
     }
-    const changeHeightHandler = (e: any) => {
-        setHeight(e.target.value)
-    }
-    const changeWeightHandler = (e: any) => {
-        setWeight(e.target.value)
-    }
     const changeCheckedHandler = () => {
         setChecked(!checked);
     }
@@ -51,15 +43,13 @@ const JoinPage:NextPage = () => {
 
     }
     const clickJoinHandler = () => {
-        const url = `${API.SERVER}${API.USER}/join`;
-        const data = { username, password, name, phone, job, height, weight };
+        const data = { username, password, name, phone, job };
 
-        username === '' || password === '' || name === '' || phone === ''
-        || job === '' || height === '' || weight === ''
+        username === '' || password === '' || name === '' || phone === '' || job === ''
         ? alert("You Should Input Infomation")
         : password !== pwRepeat
         ? alert("Check Password")
-        : axios.post(url, data, AxiosConfig())
+        : instance.post(`${API.USER}`, data, AxiosConfig())
         .then(res => {
             alert(res.data.message)
             router.push(`${PG.USER}/login`)
@@ -89,12 +79,6 @@ const JoinPage:NextPage = () => {
 
         <label htmlFor="job"><b>Job : </b></label>
         <input id="job" type="text" placeholder="Enter Job" name="Job" required onChange={changeJobHandler}/><br /><br />
-
-        <label htmlFor="height"><b>Height : </b></label>
-        <input id="height" type="number" placeholder="Enter Height" name="Height" required onChange={changeHeightHandler}/><br /><br />
-
-        <label htmlFor="weight"><b>Weight : </b></label>
-        <input id="weight" type="number" placeholder="Enter Weight" name="Weight" required onChange={changeWeightHandler}/><br /><br />
         
         <label>
           <input type="checkbox" checked = {checked} name="remember" style={{marginBottom: "15px"}} onChange={changeCheckedHandler}/> Remember me

@@ -2,9 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 import { initialState } from "./article.init";
 import { fetchAllArticles } from "./article.service";
 
-
-// const articleThunks = [fetchAllArticles]
-
 const status = {
     pending: "pending",
     fulfilled: "fulfilled",
@@ -15,9 +12,7 @@ const handlePending = (state:any) => {
     
 }
 const handleFulfilled = (state:any, {payload}:any) => {
-    // console.log("================= conclusion ===================")
-    // console.log(payload)
-    state.array = payload.articles   
+    state.array = payload
 }
 const handleRejected = (state:any) => {
     

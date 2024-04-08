@@ -1,7 +1,7 @@
 'use client'
 import { API } from "@/redux/common/enums/API";
 import { PG } from "@/redux/common/enums/PG";
-import AxiosConfig from "@/redux/common/configs/axios-config";
+import AxiosConfig, { instance } from "@/redux/common/configs/axios-config";
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -20,10 +20,9 @@ const LoginPage:NextPage = () => {
         setPassword(e.target.value)
     }
     const submitHandler = () => {
-        const url = `${API.SERVER}${API.USER}/login`;
         const data = {username, password};
 
-        axios.post(url, data, AxiosConfig())
+        instance.post(`${API.USER}`, data, AxiosConfig())
         .then(res => {
             (res.data.message) === "SUCCESS"
             ? router.push(`${PG.BOARD}/articles`)

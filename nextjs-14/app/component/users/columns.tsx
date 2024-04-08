@@ -1,6 +1,6 @@
 import { GridColDef } from "@mui/x-data-grid";
-import { UserColumn } from "./model/user-columns";
 import { Typography } from "@mui/material";
+import { UserColumn } from "./model/user-column";
 
 
 interface CellType{
@@ -51,9 +51,3 @@ export default function UsersColumns(): GridColDef[]{
         }
     ]
 }
-
-        // { field: 'username', headerName: 'Username', width: 150 },
-        // { field: 'password', headerName: 'Password', width: 150 },
-        // { field: 'name', headerName: 'Name', width: 150 },
-        // { field: 'phone', headerName: 'Phone', width: 150 },
-        // { field: 'job', headerName: 'Job', width: 150 },
