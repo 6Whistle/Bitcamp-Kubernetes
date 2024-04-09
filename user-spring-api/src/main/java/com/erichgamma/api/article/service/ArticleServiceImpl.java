@@ -126,13 +126,17 @@ public class ArticleServiceImpl implements ArticleService{
 
     @Override
     public List<ArticleDto> findArticlesByWriterId(Long id) {
-        return userRepository.existsById(id)
-        ? articleRepository.findAll().stream()
+        return articleRepository.findAll().stream()
         .filter(i -> i.getWriter().getId().equals(id))
         .map(i -> entityToDto(i))
-        .toList()
-        : List.of();
+        .toList();
     }
 
-
+    @Override
+    public List<ArticleDto> findArticlesByBoardId(Long id) {
+        return articleRepository.findAll().stream()
+        .filter(i -> i.getBoard().getId().equals(id))
+        .map(i -> entityToDto(i))
+        .toList();
+    }
 }

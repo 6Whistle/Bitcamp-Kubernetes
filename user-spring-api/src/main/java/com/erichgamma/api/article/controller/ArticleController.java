@@ -78,8 +78,13 @@ public class ArticleController {
         );
     }
 
-    @GetMapping("/search")
+    @GetMapping("/search/user")
     public ResponseEntity<List<ArticleDto>> findArticlesByWriterId(@RequestParam("user-id") Long id){
         return ResponseEntity.ok(articleService.findArticlesByWriterId(id));
+    }
+
+    @GetMapping("/search/board")
+    public ResponseEntity<List<ArticleDto>> findArticlesByBoardId(@RequestParam("board-id") Long id){
+        return ResponseEntity.ok(articleService.findArticlesByBoardId(id));
     }
 }

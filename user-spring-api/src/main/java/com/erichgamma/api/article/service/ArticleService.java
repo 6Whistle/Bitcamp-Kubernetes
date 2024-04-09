@@ -19,7 +19,8 @@ public interface ArticleService extends CommandService<ArticleDto>, QueryService
         .content(entity.getContent())
         .writer(entity.getWriter().getUsername())
         .boardType(entity.getBoard().getBoardType())
-        .registerDate(entity.getRegLocalDateTime())
+        .regDate(entity.getRegLocalDateTime().toString())
+        .modDate(entity.getModLocalDateTime().toString())
         .build();
     }
 
@@ -27,4 +28,5 @@ public interface ArticleService extends CommandService<ArticleDto>, QueryService
     Optional<Board> findBoardByBoardType(String username);
 
     List<ArticleDto> findArticlesByWriterId(Long id);
+    List<ArticleDto> findArticlesByBoardId(Long id);
 }

@@ -31,3 +31,8 @@ body {
     text-wrap: balance;
   }
 } */
+
+.MuiDataGrid-cell{
+  border-right: solid 1px black;
+  border-bottom: solid 1px black;
+}

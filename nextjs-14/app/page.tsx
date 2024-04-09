@@ -3,9 +3,9 @@ import axios from "axios"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { useState } from "react"
-import { API } from "../redux/common/enums/API"
-import AxiosConfig, { instance } from "../redux/common/configs/axios-config"
-import { PG } from "../redux/common/enums/PG"
+import { API } from "./component/common/enums/API"
+import AxiosConfig, { instance } from "./component/common/configs/axios-config"
+import { PG } from "./component/common/enums/PG"
 import { NextPage } from "next"
 
 const HomePage:NextPage = () => {
@@ -30,8 +30,8 @@ const HomePage:NextPage = () => {
       <h3>Insert your name</h3>
       <input type="text" onChange={changeHandler} />
       <button onClick={clickHandler}>send</button><br />
-      <Link href={`${PG.DEMO}/mui-demo`}>mui-demo</Link><br />
-      <Link href={`${PG.DEMO}/redux-counter`}>counter-redux</Link><br />
+      <Link href={`${PG.DEMO}/mui-demo/list`}>mui-demo</Link><br />
+      <Link href={`${PG.DEMO}/redux-counter/list`}>counter-redux</Link><br />
   </div>
 }
 

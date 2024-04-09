@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import dynamic from "next/dynamic";
-import Headers from "@/app/component/layout/header"
+import Headers from "@/app/component/common/module/header"
 
 const ReduxProvider = dynamic(() => import("@/redux/redux-provider"), {
   ssr: false

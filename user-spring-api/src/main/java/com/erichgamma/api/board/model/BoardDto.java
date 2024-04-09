@@ -15,4 +15,6 @@ import lombok.NoArgsConstructor;
 public class BoardDto {
     private Long id;
     private String boardType;
+    private String regDate;
+    private String modDate;
 }
