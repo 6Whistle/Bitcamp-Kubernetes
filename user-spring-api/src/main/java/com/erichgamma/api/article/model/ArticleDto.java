@@ -20,4 +20,5 @@ public class ArticleDto {
     private String content;
     private LocalDateTime registerDate;
     private String writer;
+    private String boardType;
 }

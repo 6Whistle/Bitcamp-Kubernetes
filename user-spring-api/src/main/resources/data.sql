@@ -17,7 +17,7 @@ insert into users (id, username, password, name, phone, job) values (13, 'Butare
 insert into users (id, username, password, name, phone, job) values (14, 'Buenaventura', 'Welder', 'Min', '472-388-3046', 'Human Resources Assistant II');
 insert into users (id, username, password, name, phone, job) values (15, 'opera', 'Equipment Operator', 'Antonie', '658-863-0908', 'Physical Therapy Assistant');
 
-insert into articles (id, writer_id, board_id, title, content ) values (1, 1 + FLOOR(RAND() % 15), 1 + FLOOR(RAND() % 2), , 'Halloween II', 'Fire Protection');
+insert into articles (id, writer_id, board_id, title, content ) values (1, 1 + FLOOR(RAND() % 15), 1 + FLOOR(RAND() % 2), 'Halloween II', 'Fire Protection');
 insert into articles (id, writer_id, board_id, title, content ) values (2, 1 + FLOOR(RAND() % 15), 1 + FLOOR(RAND() % 2), 'Stationmaster Is on Fire - The Movie, That Is!, The (Stinsen brinner... filmen alltså)', 'Framing (Steel)');
 insert into articles (id, writer_id, board_id, title, content ) values (3, 1 + FLOOR(RAND() % 15), 1 + FLOOR(RAND() % 2), 'Crows Zero II (Kurôzu Zero II)', 'Epoxy Flooring');
 insert into articles (id, writer_id, board_id, title, content ) values (4, 1 + FLOOR(RAND() % 15), 1 + FLOOR(RAND() % 2), 'Die Weihnachtsklempner', 'Temp Fencing, Decorative Fencing and Gates');
