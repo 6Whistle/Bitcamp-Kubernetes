@@ -16,7 +16,7 @@ public interface ArticleService extends CommandService<ArticleDto>, QueryService
         .title(entity.getTitle())
         .content(entity.getContent())
         .writer(entity.getWriter().getUsername())
-        .registerDate(entity.getRegLocalDateTime().toString())
+        .registerDate(entity.getRegLocalDateTime())
         .build();
     }
 

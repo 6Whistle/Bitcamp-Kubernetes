@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,15 +18,14 @@ import com.erichgamma.api.article.model.ArticleDto;
 import com.erichgamma.api.article.service.ArticleService;
 import com.erichgamma.api.common.component.MessengerVo;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-// @ApiResponses(value = {
-//     @ApiResponse(responseCode = "400", description = "Invalid ID supplied"),
-//     @ApiResponse(responseCode = "404", description = "Customer not found")})
+@ApiResponses(value = {
+    @ApiResponse(responseCode = "400", description = "Invalid ID supplied"),
+    @ApiResponse(responseCode = "404", description = "Customer not found")})
 @RestController
 @CrossOrigin(origins = "*")
 @RequiredArgsConstructor

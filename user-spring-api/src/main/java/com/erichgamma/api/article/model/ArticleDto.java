@@ -18,6 +18,6 @@ public class ArticleDto {
     private Long id;
     private String title;
     private String content;
-    private String registerDate;
+    private LocalDateTime registerDate;
     private String writer;
 }
