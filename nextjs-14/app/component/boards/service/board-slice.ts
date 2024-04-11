@@ -1,6 +1,6 @@
-import { initialState } from "./board.init"
+import { initialState } from "./board-init"
 import { createSlice } from "@reduxjs/toolkit"
-import { findAllBoards, findBoardById } from "./board.service"
+import { findAllBoards, findBoardById } from "./board-service"
 
 
 const status = {

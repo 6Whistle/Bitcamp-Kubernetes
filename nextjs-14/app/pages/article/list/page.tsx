@@ -3,8 +3,8 @@ import { useEffect } from "react"
 import Box from '@mui/material/Box';
 import { NextPage } from "next";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllArticles } from "@/app/component/articles/service/article.slice";
-import { findAllArticles } from "@/app/component/articles/service/article.service";
+import { getAllArticles } from "@/app/component/articles/service/article-slice";
+import { findAllArticles } from "@/app/component/articles/service/article-service";
 import ArticleColumns from "@/app/component/articles/module/article-columns";
 import { DataGrid } from "@mui/x-data-grid";
 

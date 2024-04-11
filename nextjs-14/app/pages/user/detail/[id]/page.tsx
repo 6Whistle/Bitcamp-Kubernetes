@@ -2,8 +2,8 @@
 
 
 import MyTypography from "@/app/component/common/style/cell";
-import { findUserById } from "@/app/component/users/service/user.service";
-import { getUserById } from "@/app/component/users/service/user.slice";
+import { findUserById } from "@/app/component/users/service/user-service";
+import { getUserById } from "@/app/component/users/service/user-slice";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";

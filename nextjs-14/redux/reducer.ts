@@ -1,9 +1,9 @@
 import { combineReducers } from "@reduxjs/toolkit";
 import { persistReducer } from "redux-persist";
-import countReducer from "@/app/component/counter/service/counter.slice";
-import articleReducer from "@/app/component/articles/service/article.slice";
-import userReducer from "@/app/component/users/service/user.slice";
-import boardReducer from "@/app/component/boards/service/board.slice"
+import countReducer from "@/app/component/counter/service/counter-slice";
+import articleReducer from "@/app/component/articles/service/article-slice";
+import userReducer from "@/app/component/users/service/user-slice";
+import boardReducer from "@/app/component/boards/service/board-slice"
 import createWebStorage from "redux-persist/lib/storage/createWebStorage";
 
 

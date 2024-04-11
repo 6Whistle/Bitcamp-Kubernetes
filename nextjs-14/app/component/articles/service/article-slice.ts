@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { initialState } from "./article.init";
-import { findAllArticles, findArticleById } from "./article.service";
+import { initialState } from "./article-init";
+import { findAllArticles, findArticleById } from "./article-service";
 
 const status = {
     pending: "pending",

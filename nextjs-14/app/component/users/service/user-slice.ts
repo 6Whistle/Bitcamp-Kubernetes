@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { initialState } from "./user.init";
-import { findAllUsers, findUserById } from "./user.service";
+import { initialState } from "./user-init";
+import { findAllUsers, findUserById } from "./user-service";
 
 const handlefulfilled = (state:any, {payload}:any) => {
     state.array = payload

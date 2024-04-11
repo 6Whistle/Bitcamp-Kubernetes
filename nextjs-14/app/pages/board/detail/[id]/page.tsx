@@ -1,7 +1,7 @@
 'use client'
 
-import { findBoardById } from "@/app/component/boards/service/board.service";
-import { getBoardById } from "@/app/component/boards/service/board.slice";
+import { findBoardById } from "@/app/component/boards/service/board-service";
+import { getBoardById } from "@/app/component/boards/service/board-slice";
 import MyTypography from "@/app/component/common/style/cell";
 
 import { useEffect, useState } from "react";

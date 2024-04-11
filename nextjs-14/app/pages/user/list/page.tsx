@@ -1,8 +1,8 @@
 'use client'
 
 import UsersColumns from "@/app/component/users/module/user-columns"
-import { findAllUsers } from "@/app/component/users/service/user.service"
-import { getAllUsers } from "@/app/component/users/service/user.slice"
+import { findAllUsers } from "@/app/component/users/service/user-service"
+import { getAllUsers } from "@/app/component/users/service/user-slice"
 import { Box } from "@mui/material"
 import { DataGrid } from "@mui/x-data-grid"
 import { NextPage } from "next"

@@ -33,6 +33,6 @@ body {
 } */
 
 .MuiDataGrid-cell{
-  border-right: solid 1px black;
-  border-bottom: solid 1px black;
+  border-right: solid 0.5px black;
+  border-bottom: solid 0.5px black;
 }

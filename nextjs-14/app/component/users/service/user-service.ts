@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { findAllUsersAPI, findUserByIdAPI } from "./user.api";
+import { findAllUsersAPI, findUserByIdAPI } from "./user-api";
 
 export const findAllUsers:any = createAsyncThunk('users/findAllUsers', async (page:number) => findAllUsersAPI(page))
 

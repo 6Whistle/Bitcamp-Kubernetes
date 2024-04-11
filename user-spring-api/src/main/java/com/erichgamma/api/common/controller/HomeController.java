@@ -1,12 +1,12 @@
-package com.erichgamma.api.common;
+package com.erichgamma.api.common.controller;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
@@ -15,8 +15,7 @@ import lombok.RequiredArgsConstructor;
 @CrossOrigin(origins = "*")
 @RequiredArgsConstructor
 public class HomeController {
-
-    @RequestMapping("/")
+    @GetMapping("/")
     public String hello(){
         return "Welcome";
     }

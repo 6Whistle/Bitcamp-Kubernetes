@@ -1,7 +1,7 @@
 'use client'
 
-import { findArticleById } from "@/app/component/articles/service/article.service";
-import { getArticleById } from "@/app/component/articles/service/article.slice";
+import { findArticleById } from "@/app/component/articles/service/article-service";
+import { getArticleById } from "@/app/component/articles/service/article-slice";
 import MyTypography from "@/app/component/common/style/cell";
 
 import { useEffect, useState } from "react";

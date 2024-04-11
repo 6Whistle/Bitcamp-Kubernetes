@@ -1,8 +1,8 @@
 'use client'
 
 import BoardColumns from "@/app/component/boards/module/board-columns"
-import { findAllBoards } from "@/app/component/boards/service/board.service"
-import { getAllBoards } from "@/app/component/boards/service/board.slice"
+import { findAllBoards } from "@/app/component/boards/service/board-service"
+import { getAllBoards } from "@/app/component/boards/service/board-slice"
 import { Box } from "@mui/material"
 import { DataGrid } from "@mui/x-data-grid"
 import { NextPage } from "next"
