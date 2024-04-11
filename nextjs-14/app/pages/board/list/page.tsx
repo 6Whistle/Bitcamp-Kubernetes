@@ -1,25 +1,27 @@
 'use client'
 
+import { IBoard } from "@/app/component/boards/model/board"
 import BoardColumns from "@/app/component/boards/module/board-columns"
-import { findAllBoards } from "@/app/component/boards/service/board-service"
-import { getAllBoards } from "@/app/component/boards/service/board-slice"
+import { findAllBoards, findBoardsCount } from "@/app/component/boards/service/board-service"
+import { getAllBoards, getBoardsCount } from "@/app/component/boards/service/board-slice"
 import { Box } from "@mui/material"
 import { DataGrid } from "@mui/x-data-grid"
-import { NextPage } from "next"
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
-const BoardListPage: NextPage = () => {
+export default function BoardListPage(){
     const dispatch = useDispatch()
-    const allBoards: [] = useSelector(getAllBoards)
+    const allBoards: IBoard[] = useSelector(getAllBoards)
+    const boardsCount = useSelector(getBoardsCount)
   
     useEffect(() => {
       dispatch(findAllBoards(1))
+      dispatch(findBoardsCount())
     }, [])
   
     return (
       <>
-        <h2>Boards</h2>
+        <p className="text-center text-xl">{boardsCount} Boards</p>
         <Box sx={{ height: '100%', width: '100%' }}>
           { allBoards && <DataGrid
             rows = {allBoards}
@@ -30,6 +32,4 @@ const BoardListPage: NextPage = () => {
         </Box>
       </>
     );
-  }
-  
-  export default BoardListPage
+}

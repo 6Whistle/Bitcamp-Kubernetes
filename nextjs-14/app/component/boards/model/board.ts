@@ -3,5 +3,7 @@ export interface IBoard{
     boardType?: string,
     regDate?: string,
     modDate?: string,
-    array?: []
+    json?: IBoard,
+    array?: IBoard[],
+    count?: number
 }

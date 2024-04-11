@@ -43,15 +43,15 @@ public class UserController {
     }
 
     @DeleteMapping("/delete")
-    public ResponseEntity<MessengerVo> deleteById(@RequestBody Long id){
+    public ResponseEntity<MessengerVo> deleteById(@RequestParam("id") Long id){
         log.info("deleteById request : {}", id);
         return ResponseEntity.ok(userService.deleteById(id));
     }
 
     @PutMapping("/modify")
-    public ResponseEntity<MessengerVo> modifiy(@RequestBody UserDto userDto){
+    public ResponseEntity<MessengerVo> modify(@RequestBody UserDto userDto){
         log.info("modifiy request : {}", userDto);
-        return ResponseEntity.ok(userService.modelify(userDto));
+        return ResponseEntity.ok(userService.modify(userDto));
     }
 
     // -------------------------- Query -------------------------- 

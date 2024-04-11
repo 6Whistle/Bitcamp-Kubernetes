@@ -31,8 +31,11 @@ public class User extends BaseEntity {
 
     @Setter
     private String password;
+    @Setter
     private String name;
+    @Setter
     private String phone;
+    @Setter
     private String job;
 }
 

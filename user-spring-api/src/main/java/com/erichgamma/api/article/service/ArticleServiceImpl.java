@@ -51,16 +51,14 @@ public class ArticleServiceImpl implements ArticleService{
     }
 
     @Override
-    public MessengerVo modelify(ArticleDto articleDto) {
+    public MessengerVo modify(ArticleDto articleDto) {
         return MessengerVo.builder()
         .message(
-            articleRepository.findById(articleDto.getId())
-            .stream()
+            articleRepository.findById(articleDto.getId()).stream()
             .peek(i -> i.setTitle(articleDto.getTitle()))
             .peek(i -> i.setContent(articleDto.getContent()))
             .map(i -> articleRepository.save(i))
-            .map(i -> "SUCCESS")
-            .findAny()
+            .map(i -> "SUCCESS").findAny()
             .orElseGet(() -> "FAILURE")
         )
         .build();
@@ -79,8 +77,7 @@ public class ArticleServiceImpl implements ArticleService{
             Stream.of(id)
             .filter(i -> existsById(i))
             .peek(i -> articleRepository.deleteById(i))
-            .map(i -> "SUCCESS")
-            .findAny()
+            .map(i -> "SUCCESS").findAny()
             .orElseGet(() -> "FAILURE")
         )
         .build();

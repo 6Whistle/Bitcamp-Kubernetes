@@ -5,12 +5,8 @@ export const counterSlice = createSlice({
   name: "counter",
   initialState,
   reducers: {
-    plusCountHandler: (state) => {
-      state.value += 1;
-    },
-    minusCountHandler: (state) => {
-      state.value -= 1;
-    },
+    plusCountHandler: (state) => {  state.value += 1;   },
+    minusCountHandler: (state) => { state.value -= 1;   },
   },
 });
 

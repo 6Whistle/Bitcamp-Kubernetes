@@ -43,15 +43,15 @@ public class BoardController {
     }
 
     @DeleteMapping("/delete")
-    public ResponseEntity<MessengerVo> deleteById(@RequestBody Long id){
+    public ResponseEntity<MessengerVo> deleteById(@RequestParam("id") Long id){
         log.info("deleteById request : {}", id);
         return ResponseEntity.ok(boardService.deleteById(id));
     }
 
     @PutMapping("/modify")
-    public ResponseEntity<MessengerVo> modifiy(@RequestBody BoardDto boardDto){
+    public ResponseEntity<MessengerVo> modify(@RequestBody BoardDto boardDto){
         log.info("modifiy request : {}", boardDto);
-        return ResponseEntity.ok(boardService.modelify(boardDto));
+        return ResponseEntity.ok(boardService.modify(boardDto));
     }
 
     // -------------------------- Query -------------------------- 

@@ -35,15 +35,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public MessengerVo modelify(UserDto userDto) {
+    public MessengerVo modify(UserDto userDto) {
         return MessengerVo.builder()
         .message(
-            findUserByUsername(userDto.getUsername())
-            .stream()
+            findUserByUsername(userDto.getUsername()).stream()
             .peek(i -> i.setPassword(userDto.getPassword()))
+            .peek(i -> i.setName(userDto.getName()))
+            .peek(i -> i.setPhone(userDto.getPhone()))
+            .peek(i -> i.setJob(userDto.getJob()))
             .peek(i -> userRepository.save(i))
-            .map(i -> "SUCCESS")
-            .findAny()
+            .map(i -> "SUCCESS").findAny()
             .orElseGet(() -> "FAILURE")
         )
         .build();

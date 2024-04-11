@@ -4,9 +4,8 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import { useSelector, useDispatch } from "react-redux"
 import {plusCountHandler, minusCountHandler, getCount} from "@/app/component/counter/service/counter-slice"
-import { NextPage } from "next";
 
-const ReduxCounterPage:NextPage = () => {
+export default function ReduxCounterPage(){
 
     const count = useSelector(getCount)
     const dispatch = useDispatch()
@@ -21,5 +20,3 @@ const ReduxCounterPage:NextPage = () => {
         </Button>
     </div>)
 }
-
-export default ReduxCounterPage

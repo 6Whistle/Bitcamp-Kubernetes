@@ -2,13 +2,12 @@
 import { API } from "@/app/component/common/enums/API";
 import { PG } from "@/app/component/common/enums/PG";
 import AxiosConfig, { instance } from "@/app/component/common/configs/axios-config";
-import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { NextPage } from "next";
+import { RQ } from "@/app/component/common/enums/RQ";
 
-const LoginPage:NextPage = () => {
+export default function LoginPage(){
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const router = useRouter()
@@ -25,7 +24,7 @@ const LoginPage:NextPage = () => {
         instance.post(`${API.USER}`, data, AxiosConfig())
         .then(res => {
             (res.data.message) === "SUCCESS"
-            ? router.push(`${PG.BOARD}/articles`)
+            ? router.push(`${PG.ARTICLE}${RQ.DETAIL}`)
             : alert("Failed to login")
         })
     }
@@ -40,5 +39,3 @@ const LoginPage:NextPage = () => {
             <Link href={`${PG.USER}/join`}>join</Link>
     </div>;
 }
-
-export default LoginPage

@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { NextPage } from "next"
 
-const JoinPage:NextPage = () => {
+export default function JoinPage(){
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [pwRepeat, setPwRepeat] = useState('')
@@ -91,5 +91,3 @@ const JoinPage:NextPage = () => {
     </div>
     )
 }
-
-export default JoinPage

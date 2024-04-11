@@ -43,15 +43,15 @@ public class ArticleController {
     }
 
     @DeleteMapping("/delete")
-    public ResponseEntity<MessengerVo> deleteById(@RequestBody Long id){
+    public ResponseEntity<MessengerVo> deleteById(@RequestParam("id") Long id){
         log.info("deleteById request : {}", id);
         return ResponseEntity.ok(articleService.deleteById(id));
     }
 
     @PutMapping("/modify")
-    public ResponseEntity<MessengerVo> modifiy(@RequestBody ArticleDto articleDto){
+    public ResponseEntity<MessengerVo> modify(@RequestBody ArticleDto articleDto){
         log.info("modifiy request : {}", articleDto);
-        return ResponseEntity.ok(articleService.modelify(articleDto));
+        return ResponseEntity.ok(articleService.modify(articleDto));
     }
 
     // -------------------------- Query -------------------------- 

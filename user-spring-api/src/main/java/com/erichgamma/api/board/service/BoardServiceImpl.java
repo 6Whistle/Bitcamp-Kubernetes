@@ -33,7 +33,7 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    public MessengerVo modelify(BoardDto boardDto) {
+    public MessengerVo modify(BoardDto boardDto) {
         return MessengerVo.builder()
         .message(
             boardRepository.findById(boardDto.getId()).stream()
