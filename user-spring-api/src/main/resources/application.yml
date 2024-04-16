@@ -28,3 +28,8 @@ logging:
       hibernate:
         SQL: debug
         type: trace
+
+jwt:
+  iss: erichgamma.co.kr
+  exp: 24 * 60 * 60 * 1000
+  secret: erichgammaerichgammaerichgammaerichgammaerichgamma

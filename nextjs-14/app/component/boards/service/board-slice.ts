@@ -1,8 +1,7 @@
 import { initialState } from "./board-init"
 import { createSlice } from "@reduxjs/toolkit"
-import { findAllBoards, findBoardById, findBoardsCount, modifyBoard } from "./board-service"
+import { deleteBoard, findAllBoards, findBoardById, findBoardsCount, modifyBoard } from "./board-service"
 import { IBoard } from "../model/board"
-import { deleteUser } from "../../users/service/user-service"
 
 
 const status = {
@@ -24,7 +23,7 @@ export const boardSlice = createSlice({
         .addCase(findBoardById.fulfilled, (state:any, {payload}: any) => {state.json = payload})
         .addCase(findBoardsCount.fulfilled, (state:any, {payload}: any) => {state.count = payload})
         .addCase(modifyBoard.fulfilled, (state:any, {payload}:any) => {})
-        .addCase(deleteUser.fulfilled, (state:any) => {state.json = {}})
+        .addCase(deleteBoard.fulfilled, (state:any) => {state.json = {}})
     }
 })
 

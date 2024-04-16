@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 import org.springframework.stereotype.Service;
 
+import com.erichgamma.api.common.component.JwtProvider;
 import com.erichgamma.api.common.component.MessengerVo;
 import com.erichgamma.api.user.model.User;
 import com.erichgamma.api.user.model.UserDto;
@@ -18,6 +19,7 @@ import lombok.RequiredArgsConstructor;
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
+    private final JwtProvider jwtProvider;
     // -------------------------- Command -------------------------- 
 
     @Override
@@ -110,14 +112,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public MessengerVo login(UserDto userDto){
+        Boolean flag = findUserByUsername(userDto.getUsername()).stream()
+        .filter(i -> i.getPassword().equals(userDto.getPassword())).findAny().isPresent();
+
+
         return MessengerVo.builder()
-        .message(
-            findUserByUsername(userDto.getUsername()).stream()
-            .filter(i -> i.getPassword().equals(userDto.getPassword()))
-            .map(i -> "SUCCESS")
-            .findAny()
-            .orElseGet(() -> "FAILURE")
-        )
+        .message(flag ? "SUCCESS" : "FAILURE")
+        .token(flag ? jwtProvider.createToken(userDto) : "None")
         .build();
     }
 

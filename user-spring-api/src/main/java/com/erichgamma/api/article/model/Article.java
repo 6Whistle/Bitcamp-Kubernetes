@@ -31,4 +31,13 @@ public class Article extends BaseEntity{
     private String title;
     @Setter
     private String content;
+
+    public static Article of(Long id,String title, String content){
+        Article article = new Article();
+        article.id = id;
+        article.title = title;
+        article.content = content;
+
+        return article;
+    }
 }

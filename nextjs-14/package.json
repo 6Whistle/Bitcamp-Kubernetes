@@ -23,7 +23,8 @@
     "react": "^17.0.0 || ^18.0.0",
     "react-dom": "^17.0.0 || ^18.0.0",
     "redux-actions": "3.0.0",
-    "redux-persist": "^6.0.0"
+    "redux-persist": "^6.0.0",
+    "nookies": "2.5.1"
   },
   "devDependencies": {
     "@types/node": "^20",

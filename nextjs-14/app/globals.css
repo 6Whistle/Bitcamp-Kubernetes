@@ -2,37 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
-/* :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@layer components{
+    .flexcenter {@apply flex items-center justify-center}
+    .margincenter {@apply mx-auto my-0}
+    .flexwrap {@apply flex flex-wrap}
 }
+.MuiDataGrid-cell {border-top : solid 0.25px black;
+    border-right : solid 0.25px black;
+    border-bottom : solid 0.25px black;}
+/* .css-qcqlck-MuiDataGrid-root {border : solid 0.25px black;}
+.MuiDataGrid-cell MuiDataGrid-cell--textLeft {border : solid 0.25px black;} */
+.MuiDataGrid-columnHeaderTitleContainer{border-bottom : solid 0.25px black; backgourd-color: gray}
+.MuiDataGrid-columnHeader MuiDataGrid-withBorderColor{border-bottom : solid 0.25px black;}
+.css-1essi2g-MuiDataGrid-columnHeaderRow{border-bottom : solid 0.25px black;}
+.MuiTableRow-root css-1q1u3t4-MuiTableRow-root{border-bottom : solid 0.25px black;}
+.Table-title{fontSize: '20px'; border: '1px solid black'; height: '70px'}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
+ /* external css to add in tailwind's Global css
+ no-scrollbar(class) */
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  @variants responsive {
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
   }
-} */
-
-.MuiDataGrid-cell{
-  border-right: solid 0.5px black;
-  border-bottom: solid 0.5px black;
-}
+} 

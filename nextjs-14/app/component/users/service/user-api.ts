@@ -42,8 +42,16 @@ export const modifyUserAPI = async (user:IUser) => {
 
 export const deleteUserAPI = async (id:number) => {
     try {
-        console.log(id)
         return (await instance.delete(`${API.USER}${RQ.DEL}`, {params : {id}})).data        
+    } catch (error) {
+        console.log(error)
+        return error
+    }
+}
+
+export const loginAPI = async (user:IUser) => {
+    try {
+        return (await instance.post(`${API.USER}/login`, user)).data
     } catch (error) {
         console.log(error)
         return error

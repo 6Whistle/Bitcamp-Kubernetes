@@ -15,5 +15,5 @@ import lombok.NoArgsConstructor;
 public class MessengerVo {
     private String message;
     private int status;
-    private String code;
+    private String token;
 }
